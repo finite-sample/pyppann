@@ -178,3 +178,7 @@ glove.6B.300d.txt
 glove.6B.50d.txt
 glove.6B.zip
 .DS_Store
+
+# Generated outputs
+figs/
+tabs/
