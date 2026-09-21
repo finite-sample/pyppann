@@ -33,7 +33,7 @@ ci:
 	uv build
 
 ci-docker:
-	set -eu; for version in 3.9 3.14; do \
+	set -eu; for version in 3.12 3.14; do \
 		docker run --rm -v "$(CURDIR):/work" -w /work \
 			-e UV_PROJECT_ENVIRONMENT=/tmp/pyppann-venv \
 			-e OPENBLAS_NUM_THREADS=1 -e OMP_NUM_THREADS=1 \
