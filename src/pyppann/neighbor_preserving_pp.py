@@ -219,7 +219,7 @@ class NeighborPreservingPP:
             proj_set = set(proj_neighbors[i])
             recall_sum += len(orig_set & proj_set) / self.k
 
-        return recall_sum / n_samples
+        return float(recall_sum / n_samples)
 
     def _generate_random_direction(self, n_features: int) -> NDArray[np.floating]:
         """Generate a random unit direction."""
@@ -234,7 +234,7 @@ class NeighborPreservingPP:
         assert self._rng is not None
         noise = self._rng.standard_normal(base.shape) * noise_scale
         perturbed = base + noise
-        return perturbed / np.linalg.norm(perturbed)
+        return cast("NDArray[np.floating]", perturbed / np.linalg.norm(perturbed))
 
     def _refine_projection(
         self,
