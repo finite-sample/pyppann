@@ -7,7 +7,7 @@ and real datasets, measuring recall@k, fit time, and query time.
 from __future__ import annotations
 
 import time
-from typing import Any, Protocol
+from typing import Any, Protocol, cast
 
 import numpy as np
 from numpy.typing import NDArray
@@ -58,7 +58,7 @@ def compute_recall(
         pred_set = set(pred_neighbors[i])
         total_recall += len(true_set & pred_set) / k
 
-    return total_recall / n_samples
+    return float(total_recall / n_samples)
 
 
 def create_synthetic_data(
@@ -93,7 +93,7 @@ def create_synthetic_data(
         n_clusters_per_class=3,
         random_state=random_state,
     )
-    return X.astype(np.float64)
+    return cast("NDArray[np.floating]", X.astype(np.float64))
 
 
 def evaluate_method(
@@ -195,7 +195,7 @@ def run_comparison(
 
     results: list[dict[str, Any]] = []
 
-    methods = [
+    methods: list[tuple[str, ANNModel]] = [
         (
             "RandomProjection",
             RandomProjectionANN(n_components=n_components, random_state=random_state),
