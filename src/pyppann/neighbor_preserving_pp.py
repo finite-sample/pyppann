@@ -261,8 +261,8 @@ class NeighborPreservingPP:
             options={"maxiter": self.n_refinement_steps},
         )
 
-        refined: NDArray[np.floating] = result.x
-        return refined / np.linalg.norm(refined)
+        refined = np.asarray(result.x, dtype=np.float64)
+        return np.asarray(refined / np.linalg.norm(refined), dtype=np.float64)
 
     def _select_greedy_projection(
         self,
