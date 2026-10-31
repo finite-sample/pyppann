@@ -1,4 +1,4 @@
-# pyppann
+# pyppann: approximate nearest neighbors through projection pursuit
 
 Approximate Nearest Neighbors using Projection Pursuit.
 
